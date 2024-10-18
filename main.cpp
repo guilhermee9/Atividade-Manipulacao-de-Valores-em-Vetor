@@ -1,7 +1,7 @@
 /*
 Título: Manipulação de Valores em Vetor
-Autor: Profe. Berssa
-Data: 2024.10.11
+Autor: Profe. Guilherme Gonçalves da Silva
+Data: 2024.10.18
 */
 
 
@@ -19,7 +19,7 @@ using namespace std;  // Namespace padrão para evitar o uso de std:: antes dos 
 // Função para aguardar que o usuário pressione Enter
 void esperarEnter() {
     cout << "\nPressione Enter para continuar...";
-    //cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Limpa o buffer de entrada - NO CASO DE DAR ERRO DURANTE A EXECUSSÃO DESCOMENTE ESSA LINHA
+    //cin.ignore(numeric_limits<streamsize>::max(), '\  n');  // Limpa o buffer de entrada - NO CASO DE DAR ERRO DURANTE A EXECUSSÃO DESCOMENTE ESSA LINHA
     cin.get();  // Aguarda o usuário pressionar Enter
 }
 
@@ -139,6 +139,79 @@ void ordenarVetor(int vetor[], int tamanho) {
     esperarEnter();  // Espera o usuário pressionar Enter
 }
 
+// Funcao para cotar e mostrar a quantidade de números positivos e negativos
+void mostrarPositivosNegativos(int vetor[], int tamanho) {
+    int positivos = 0;  // Variavelq ue armazena os numeros positivos
+    int negativos = 0;  // Variavel que armazena os numeros negativos
+
+    for (int i = 0; i < tamanho; i++) { 
+        if (vetor[i] > 0) {
+            positivos++;  // Incrementa caso a contagem seja > 0
+        } else if (vetor[i] < 0) {
+            negativos++;  // Incrementa caso a contagem seja < 0   
+        }
+    }
+
+    // Exibe a quantidade de números positivos e negativos
+    cout << "\nQuantidade de números positivos: " << positivos << endl;
+    cout << "\nQuantidade de números negativos: " << negativos << endl;
+
+    esperarEnter();  // Espera o usuário pressionar Enter antes de continuar
+}
+
+// Contar numeros pares e impares
+void contarParesEImpares(int vetor[], int tamanho) {
+    int pares = 0;  // Armazena os numeros pares
+    int impares = 0;  // Armazena os numeros impares
+
+    for (int i = 0; i < tamanho; i++) {
+        if (vetor[i] % 2 == 0) {
+            pares++;  // Incrementa pares caso seja /2
+        } else {
+            impares++;  // Incrementa impares caso /2
+        }
+    }
+
+    cout << "\nQuantidade de números pares: " << pares << endl;
+    cout << "\nQuantidade de números ímpares: " << impares << endl;
+
+    esperarEnter();  // Espera o usuário pressionar Enter antes de continuar
+}
+
+// mostrar maior e menor valor do vetor
+void mostrarMenorMaior(int vetor[], int tamanho) {
+    // define as variaveis como 0
+    int menor = vetor[0];
+    int maior = vetor[0];
+
+    for (int i = 1; i < tamanho; i++) {
+        if (vetor[i]<menor) {
+            menor=vetor[i];  // grava menor valor
+        }
+        if (vetor[i]>maior) {
+            maior=vetor[i];  // grava maior valor
+        }
+    }
+
+    cout << "\nMenor valor no vetor: " << menor << endl;
+    cout << "\nMaior valor no vetor: " << maior << endl;
+
+    esperarEnter();  // Espera o usuário pressionar Enter antes de continuar
+}
+
+// Funcao autoral que inverte o sinal de cada um dos numeros do vetor
+void inverterSinal(int vetor[], int tamanho) {
+    // percorre e inverte cada valor
+    for (int i=0; i<tamanho; i++) {
+        vetor[i] = -vetor[i];  // multiplica todos os valores por (-1)
+    }
+
+    cout << "\nO sinal de todos os numeros foram invertidos!";
+    esperarEnter();  // Espera o usuário pressionar Enter antes de continuar
+}
+
+
+
 // Função que exibe o menu e retorna a escolha do usuário
 int menu() {
     cout << "\nEscolha uma opção:\n";
@@ -149,6 +222,10 @@ int menu() {
     cout << "5 - Editar valor do vetor\n";
     cout << "6 - Verificar valor no vetor\n";
     cout << "7 - Ordenar vetor\n";
+    cout << "8 - Mostrar a quantidade de numeros positivos e negativos\n";
+    cout << "9 - Contar a quantidade de numeros pares e impares\n";
+    cout << "10 - Comparar o menor e maior valor no vetor\n";
+    cout << "11 - Função autoral, que inverte o sinal de cada numero.\n";
     cout << "0 - Sair\n";
     return lerEntradaValida("Opção: ");
 }
@@ -186,6 +263,18 @@ int main() {
             case 7:
                 ordenarVetor(vetor, TAMANHO);
                 break;
+            case 8:
+                mostrarPositivosNegativos(vetor, TAMANHO);
+                break;
+            case 9:
+                    contarParesEImpares(vetor, TAMANHO);
+                break;    
+            case 10:
+                    mostrarMenorMaior(vetor, TAMANHO);
+                break;      
+            case 11:
+                    inverterSinal(vetor, TAMANHO);
+            break;               
             case 0:
                 cout << "Encerrando o programa..." << endl;
                 break;
